@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" ng-app="todoApp">
+<head>
+  <meta charset="utf-8">
+  <title>ToDo App</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <script src="js/angular.js"></script>
+  <script src="js/angular-route.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/services.js"></script>
+</head>
+<body ng-controller="ToDoCtrl" >
+<form ng-submit="submit()" ng-controller="addToDoCtrl">
+  <div class="header-group">
+    <h1 class="app-title">{{title}}</h1>
+    <span class="current_date">{{today | date}}</span>
+  </div>
+  <div class="interface-group">
+    <div class="input-group">
+      <!--<input type="submit" id="submit" value="Submit" />-->
+      <input type="text" placeholder="Type Here What Needs To Be Done" ng-model="text" name="text" />
+      <!--<input type="checkbox" ng-click="" id="all" name="check-all" />-->
+    </div>
+    <!--<div class="items-group" unordered-list="todos"></div>-->
+    <todo-list></todo-list>
+    <div class="interface-footer">
+      <span>{{todos.length}}</span>
+      <span> items total</span>
+      <div class="pull-right filters">
+        <a href="#" ng-click="showItem()" >All</a>
+        <a href="#" ng-click="showItem('done')" >Completed</a>
+        <a href="#" ng-click="showItem('new')" >New</a>
+      </div>
+
+    </div>
+
+  </div>
+</form>
+</body>
+</html>
