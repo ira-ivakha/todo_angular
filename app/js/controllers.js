@@ -21,7 +21,8 @@ app.controller('ToDoCtrl', function($scope) {
   console.log($scope.todos);
   console.log($scope.todos.length);
 
-  $scope.deleteItem = function(index){
+  $scope.deleteItem = function(index, $event){
+    $event.preventDefault();
     $scope.todos.splice(index, 1);
     storeTodos($scope.todos);
     //$scope.$apply();
@@ -31,18 +32,19 @@ app.controller('ToDoCtrl', function($scope) {
     storeTodos($scope.todos);
   };
 
-  $scope.showItem = function(itemClass){
+  $scope.showItem = function(itemClass, $event){
+    $event.preventDefault();
     if (itemClass=='done') {
-      angular.element('.todo-item').addClass('hidden');
-      angular.element('.done').removeClass('hidden');
+      $('.todo-item').addClass('hidden');
+      $('.done').removeClass('hidden');
     }
     else {
       if (itemClass == 'new') {
-        angular.element('.todo-item').addClass('hidden');
-        angular.element('.new').removeClass('hidden');
+        $('.todo-item').addClass('hidden');
+        $('.new').removeClass('hidden');
       }
       else {
-        angular.element('.todo-item').removeClass('hidden')
+        $('.todo-item').removeClass('hidden')
       }
     }
 
