@@ -1,9 +1,40 @@
-<ul class="todos">
+<form ng-submit="submit()" ng-controller="addToDoCtrl">
+<div class="interface-group" data-ng-cloak>
+  <div class="input-group">
+    <!--<input type="submit" id="submit" value="Submit" />-->
+    <input type="text" placeholder="Type Here What Needs To Be Done" ng-model="text" name="text" />
+    <!--<input type="checkbox" ng-click="" id="all" name="check-all" />-->
+  </div>
+  <!--<div class="items-group" unordered-list="todos"></div>-->
+  <!--here can be used directive <todo-list>-->
+  <ul class="todos">
 
-  <li ng-repeat="item in todos track by $index" class="todo-item {{item.done ? 'done' : 'new'}}"  >
-    <input type="checkbox" ng-model="item.done" ng-click="refreshStorage(item.done)" name="is_done" id="done{{$index}}">
-    <label for="done{{$index}}">{{item.name}}</label>
+    <li ng-repeat="item in todos track by $index" class="todo-item {{item.done ? 'done' : 'new'}}" id={{$index}} ng-dblclick="editItem($index)" >
+      <input type="text" ng-model="item.name" class="item-edit hidden" />
+      <input type="checkbox" ng-model="item.done" ng-bind="item.done" ng-click="refreshStorage(item.done)" name="is_done" id="done{{$index}}">
+      <label for="done{{$index}}">
+        <span class="item-name">{{item.name}}</span>
+        <span class="item-date">{{item.date | date}}</span>
+      </label>
 
-    <a href="#" class="delete-item"  ng-click="deleteItem($index, $event)"><i class="fa fa-close"></i></a>
-  </li>
-</ul>
+      <a href="#" class="delete-item"  ng-click="deleteItem($index, $event)"><i class="fa fa-close"></i></a>
+    </li>
+  </ul>
+
+  <!--</todo-list>-->
+  <div class="interface-footer">
+    <span>{{todos.length}} items total</span>
+    <div class="pull-right filters">
+      <a href="#/" ng-click="showItem('', $event)" ng-model="item.done">All</a>
+      <a href="#/" ng-click="showItem('done', $event)">Completed</a>
+      <a href="#/" ng-click="showItem('new', $event)">New</a>
+    </div>
+    <!--<pre>$location.path() = {{$location.path()}}</pre>
+    <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
+    <pre>$route.current.params = {{$route.current.params}}</pre>
+    <pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
+    <pre>$routeParams = {{$routeParams}}</pre>-->
+  </div>
+
+</div>
+</form>

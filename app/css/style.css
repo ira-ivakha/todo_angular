@@ -13,6 +13,9 @@ body, html{
 html{
   height: 100%;
 }
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
 .header-group{
   display:block;
   position: relative;
@@ -172,4 +175,10 @@ input:focus, input:active{
 }
 .todo-item:hover .delete-item{
   color: #cccccc;
+}
+.item-date{
+  padding: 0 2em;
+  font-size: 0.9em;
+  color: #bbbbbb;
+  font-style:italic;
 }

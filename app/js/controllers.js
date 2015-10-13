@@ -2,7 +2,17 @@
 
 /* Controllers */
 
-var app = angular.module('todoControllers', []);
+var app = angular.module('todoControllers', ['ngRoute'])
+  .config(function($routeProvider){
+    $routeProvider
+        .when('/', {
+          templateUrl: 'list.html'
+        })
+        .when('/view', {
+          templateUrl: 'ordered-list.html'
+        });
+      //$locationProvider.html5mode(true);
+  });
 
 
 app.controller('ToDoCtrl', function($scope) {
@@ -21,19 +31,27 @@ app.controller('ToDoCtrl', function($scope) {
   console.log($scope.todos);
   console.log($scope.todos.length);
 
+
   $scope.deleteItem = function(index, $event){
     $event.preventDefault();
     $scope.todos.splice(index, 1);
     storeTodos($scope.todos);
-    //$scope.$apply();
   };
 
   $scope.refreshStorage = function(done){
+
     storeTodos($scope.todos);
+    //$scope.$apply();
+  };
+  $scope.editItem = function(index){
+    console.log(this);
+    console.log(index);
+    $('ul').find('.item-edit').removeClass('hidden');
+
   };
 
   $scope.showItem = function(itemClass, $event){
-    $event.preventDefault();
+    //$event.preventDefault();
     if (itemClass=='done') {
       $('.todo-item').addClass('hidden');
       $('.done').removeClass('hidden');
@@ -47,33 +65,23 @@ app.controller('ToDoCtrl', function($scope) {
         $('.todo-item').removeClass('hidden')
       }
     }
-
   };
 });
 app.controller('addToDoCtrl', ['$scope', function($scope) {
   $scope.text = '';
-  $scope.todonew = {'name': '', 'done' : false };
+  $scope.todonew = {'name': '', 'done' : false, 'date' : '' };
   $scope.submit = function() {
     if ($scope.text) {
       $scope.todonew.name = this.text;
       $scope.todos.push(this.todonew);
-      $scope.todonew = {'name': '', 'done' : false };
+      $scope.todonew = {'name': '', 'done' : false, 'date' : $scope.today };
       $scope.text = '';
     }
     storeTodos($scope.todos);
   };
 
 }]);
-app.directive('todoList', function(){
-  return {
-    restrict: 'E',
-    templateUrl : 'list.html'
-  }
-});
-app.filter('filterItem', function(){
-  return function(item) {
-  }
-});
+
 
 
 /*

@@ -1,0 +1,22 @@
+
+<div class="interface-group" data-ng-cloak>
+
+  <select class="form-control" ng-model="item.date">
+    <option ng-repeat="item in todos | filter:item">{{item.date | date}}</option>
+  </select>
+
+
+  <ol class="todos">
+
+    <li ng-repeat="item in todos | filter:item | orderBy : done"   >
+      {{item.done}}
+      {{item.name}}
+      {{item.date | date}}
+
+    </li>
+  </ol>
+
+
+  </div>
+
+</div>

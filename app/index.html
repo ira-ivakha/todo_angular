@@ -14,32 +14,23 @@
   <script src="js/controllers.js"></script>
   <script src="js/filters.js"></script>
   <script src="js/services.js"></script>
+
 </head>
 <body ng-controller="ToDoCtrl" >
-<form ng-submit="submit()" ng-controller="addToDoCtrl">
+
+
   <div class="header-group">
     <h1 class="app-title">{{title}}</h1>
-    <span class="current_date">{{today | date}}</span>
-  </div>
-  <div class="interface-group">
-    <div class="input-group">
-      <!--<input type="submit" id="submit" value="Submit" />-->
-      <input type="text" placeholder="Type Here What Needs To Be Done" ng-model="text" name="text" />
-      <!--<input type="checkbox" ng-click="" id="all" name="check-all" />-->
-    </div>
-    <!--<div class="items-group" unordered-list="todos"></div>-->
-    <todo-list></todo-list>
-    <div class="interface-footer">
-      <span>{{todos.length}} items total</span>
-      <div class="pull-right filters">
-        <a href="#" ng-click="showItem('', $event)" >All</a>
-        <a href="#" ng-click="showItem('done', $event)">Completed</a>
-        <a href="#" ng-click="showItem('new', $event)">New</a>
-      </div>
-
-    </div>
+    <span class="current_date"  data-ng-cloak>{{today | date}}</span>
+    <span>
+      <a href="#/view">Show list for printing</a>
+      <a href="#/">To main page</a>
+    </span>
 
   </div>
-</form>
+  <ng-view></ng-view>
+
+
 </body>
+
 </html>
