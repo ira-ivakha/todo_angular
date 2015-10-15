@@ -18,7 +18,6 @@
 </head>
 <body ng-controller="ToDoCtrl" >
 
-
   <div class="header-group">
     <h1 class="app-title">{{title}}</h1>
     <span class="current_date"  data-ng-cloak>{{today | date}}</span>
@@ -29,7 +28,83 @@
 
   </div>
   <ng-view></ng-view>
+<script type="text/ng-template" id="list.html">
+  <form ng-submit="submit()" ng-controller="addToDoCtrl">
+    <div class="interface-group" data-ng-cloak>
+      <div class="input-group">
+        <!--<input type="submit" id="submit" value="Submit" />-->
+        <input type="text" placeholder="Type Here What Needs To Be Done" ng-model="text" name="text" />
+        <!--<input type="checkbox" ng-click="" id="all" name="check-all" />-->
+      </div>
+      <!--<div class="items-group" unordered-list="todos"></div>-->
+      <!--here can be used directive <todo-list>-->
+      <ul class="todos" ng-init="currentStatus=2">
 
+        <li ng-repeat="item in todos | statusFiltered : currentStatus track by $index  " class="todo-item {{item.done ? 'done' : 'new'}}" id={{$index}} ng-dblclick="showEdit = !showEdit" >
+          <div class="edit-group" ng-show="showEdit" >
+            <form>
+              <input type="text" ng-model="item.name" class="item-edit" ng-keyup="$event.keyCode == 13 && (showEdit = false)" />
+              <input type="submit" class="hidden"/>
+            </form>
+
+          </div>
+          <div class="view-group" ng-hide="showEdit">
+            <input type="checkbox" ng-model="item.done" ng-bind="item.done" ng-click="refreshStorage(item.done)" name="is_done" id="done{{$index}}">
+            <label for="done{{$index}}">
+              <span class="item-name">{{item.name}}</span>
+              <span class="item-date">{{item.date | date}}</span>
+            </label>
+            <a href="#" class="delete-item"  ng-click="deleteItem($index, $event)"><i class="fa fa-close"></i></a>
+          </div>
+        </li>
+      </ul>
+
+      <!--</todo-list>-->
+      <div class="interface-footer">
+        <span class="pull-left">{{todos.length}} items total, {{$filter('filter')(todos, { completed: false }).length}} items left</span>
+        <a href="#/" class="pull-right" ng-click="deleteCompleted(todos)">Clear completed</a>
+        <div class="filters">
+          <a href="#/" ng-click="currentStatus=2">All</a>
+          <a href="#/" ng-click="currentStatus=1">Completed</a>
+          <a href="#/" ng-click="currentStatus=0">New</a>
+          <!--<a href="#/" ng-click="showItem('', $event)" ng-model="item.done">All</a>
+          <a href="#/" ng-click="showItem('done', $event)">Completed</a>
+          <a href="#/" ng-click="showItem('new', $event)">New</a>-->
+        </div>
+        <!--<pre>$location.path() = {{$location.path()}}</pre>
+        <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
+        <pre>$route.current.params = {{$route.current.params}}</pre>
+        <pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
+        <pre>$routeParams = {{$routeParams}}</pre>-->
+      </div>
+
+    </div>
+  </form>
+</script>
+<script type="text/ng-template" id="ordered-list.html">
+
+  <div class="interface-group" data-ng-cloak>
+
+    <select class="form-control" ng-model="item.date">
+      <option ng-repeat="item in todos | filter:item">{{item.date | date}}</option>
+    </select>
+
+
+    <ol class="todos">
+
+      <li ng-repeat="item in todos | filter:item | orderBy : done"   >
+        {{item.done}}
+        {{item.name}}
+        {{item.date | date}}
+
+      </li>
+    </ol>
+
+
+  </div>
+
+  </div>
+</script>
 
 </body>
 

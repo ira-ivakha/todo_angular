@@ -113,6 +113,15 @@ input:focus, input:active{
   padding: 10px;
   overflow:hidden;
 }
+.filters{
+  overflow:hidden;
+  display:block;
+  padding:5px 10px;
+}
+.interface-footer .pull-left,
+.interface-footer .pull-right{
+  padding: 5px;
+}
 .filters a{
   padding: 6px;
   margin: 0 2px;

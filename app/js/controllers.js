@@ -41,13 +41,24 @@ app.controller('ToDoCtrl', function($scope) {
   $scope.refreshStorage = function(done){
 
     storeTodos($scope.todos);
+    loadTodos();
     //$scope.$apply();
   };
-  $scope.editItem = function(index){
-    console.log(this);
-    console.log(index);
-    $('ul').find('.item-edit').removeClass('hidden');
 
+  $scope.deleteCompleted = function(todos){
+    var i= 0;
+
+    while (i< todos.length){
+      //console.log(todos[i]);
+      if (todos[i].done !== true)
+      {
+        i+=1;
+      }
+      else {
+        todos.splice(i, 1);
+      }
+    }
+    localStorage["todos"] = JSON.stringify(todos);
   };
 
   $scope.showItem = function(itemClass, $event){
@@ -117,6 +128,7 @@ app.controller('addToDoCtrl', ['$scope', function($scope) {
 var storeTodos= function(todos){
     localStorage["todos"] = JSON.stringify(todos);
 };
+
 var loadTodos = function(){
   if (localStorage["todos"] != null){
     var todos = JSON.parse(localStorage["todos"]);
