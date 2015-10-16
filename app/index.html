@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <title>ToDo App</title>
-  <link rel="stylesheet" href="css/style.css">
+
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
   <script src="js/libraries/angular.js"></script>
   <script src="js/libraries/angular-route.js"></script>
   <script src="js/libraries/jquery.min.js"></script>
@@ -21,9 +22,9 @@
   <div class="header-group">
     <h1 class="app-title">{{title}}</h1>
     <span class="current_date"  data-ng-cloak>{{today | date}}</span>
-    <span>
-      <a href="#/view">Show list for printing</a>
-      <a href="#/">To main page</a>
+    <span class="btn-wrapper">
+      <a href="#/view" class="btn btn-default pull-right page-link">Show what should be done</a>
+      <a href="#/" class="btn btn-default pull-left page-link">Back to main page</a>
     </span>
 
   </div>
@@ -42,7 +43,7 @@
         <li ng-repeat="item in filtered = ( todos | statusFiltered : currentStatus) track by $index" class="todo-item {{item.done ? 'done' : 'new'}}" id={{$index}} ng-dblclick="showEdit = !showEdit" >
           <div class="edit-group" ng-show="showEdit" >
             <form>
-              <input type="text" ng-model="item.name" class="item-edit" ng-keyup="$event.keyCode == 13 && (showEdit = false)" />
+              <input type="text" ng-model="item.name" autofocus class="item-edit" ng-blur="showEdit = false" ng-keyup="$event.keyCode == 13 && (showEdit = false)" />
               <input type="submit" class="hidden"/>
             </form>
 
@@ -60,7 +61,10 @@
 
       <!--</todo-list>-->
       <div class="interface-footer">
-        <span class="pull-left">{{todos.length}} items total, {{filtered.length}} items showing</span>
+        <ul class="items-count pull-left">
+          <li>{{todos.length}} items total</li>
+          <li>{{filtered.length}} items showing</li>
+        </ul>
         <a href="#/" class="pull-right" ng-click="deleteCompleted(todos)">Clear completed</a>
         <div class="filters">
           <a href="#/" ng-click="currentStatus=2">All</a>
