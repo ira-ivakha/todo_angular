@@ -10,6 +10,9 @@ var app = angular.module('todoControllers', ['ngRoute'])
         })
         .when('/view', {
           templateUrl: 'ordered-list.html'
+        })
+        .otherwise({
+          template: "<h2 class='app-title'>404 - page not found :(</h2>"
         });
       //$locationProvider.html5mode(true);
   });
@@ -60,7 +63,7 @@ app.controller('ToDoCtrl', function($scope) {
     }
     localStorage["todos"] = JSON.stringify(todos);
   };
-
+/*
   $scope.showItem = function(itemClass, $event){
     //$event.preventDefault();
     if (itemClass=='done') {
@@ -78,6 +81,7 @@ app.controller('ToDoCtrl', function($scope) {
     }
   };
 });
+*/
 app.controller('addToDoCtrl', ['$scope', function($scope) {
   $scope.text = '';
   $scope.todonew = {'name': '', 'done' : false, 'date' : '' };

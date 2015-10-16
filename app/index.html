@@ -61,7 +61,7 @@
 
       <!--</todo-list>-->
       <div class="interface-footer">
-        <span class="pull-left">{{todos.length}} items total, {{$filter('filter')(todos, { completed: false }).length}} items left</span>
+        <span class="pull-left">{{todos.length}} items total, {{$filter('statusFiltered')(todos, { currentStatus: 0 }).length}} items left</span>
         <a href="#/" class="pull-right" ng-click="deleteCompleted(todos)">Clear completed</a>
         <div class="filters">
           <a href="#/" ng-click="currentStatus=2">All</a>
@@ -85,14 +85,14 @@
 
   <div class="interface-group" data-ng-cloak>
 
-    <select class="form-control" ng-model="item.date">
-      <option ng-repeat="item in todos | filter:item">{{item.date | date}}</option>
+    <select class="form-control" ng-model="dateModel" value="false">
+      <option ng-repeat="item in todos | groupBy done">{{item.done}}</option>
     </select>
 
 
     <ol class="todos">
 
-      <li ng-repeat="item in todos | filter:item | orderBy : done"   >
+      <li ng-repeat="item in todos | filter: {done: dateModel}"   >
         {{item.done}}
         {{item.name}}
         {{item.date | date}}
@@ -104,6 +104,7 @@
   </div>
 
   </div>
+
 </script>
 
 </body>

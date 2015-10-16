@@ -1,14 +1,14 @@
 
 <div class="interface-group" data-ng-cloak>
 
-  <select class="form-control" ng-model="item.date">
-    <option ng-repeat="item in todos | filter:item">{{item.date | date}}</option>
+  <select class="form-control" ng-model="dateModel">
+    <option ng-repeat="item in todos | groupBy item.date track by date ">{{item.date}}</option>
   </select>
 
 
   <ol class="todos">
 
-    <li ng-repeat="item in todos | filter:item | orderBy : done"   >
+    <li ng-repeat="item in todos | filter: {date : dateModel}"   >
       {{item.done}}
       {{item.name}}
       {{item.date | date}}
