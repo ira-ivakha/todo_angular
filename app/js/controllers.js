@@ -63,7 +63,7 @@ app.controller('ToDoCtrl', function($scope) {
     }
     localStorage["todos"] = JSON.stringify(todos);
   };
-/*
+  /*
   $scope.showItem = function(itemClass, $event){
     //$event.preventDefault();
     if (itemClass=='done') {
@@ -79,9 +79,9 @@ app.controller('ToDoCtrl', function($scope) {
         $('.todo-item').removeClass('hidden')
       }
     }
-  };
+  };*/
 });
-*/
+
 app.controller('addToDoCtrl', ['$scope', function($scope) {
   $scope.text = '';
   $scope.todonew = {'name': '', 'done' : false, 'date' : '' };

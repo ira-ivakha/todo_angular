@@ -17,6 +17,8 @@ app.filter('statusFiltered', function () {
       }
     }
     else filtered = todos;
+    console.log('filtered', filtered.length);
     return filtered;
+
   };
 });

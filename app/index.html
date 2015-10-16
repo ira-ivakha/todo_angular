@@ -39,8 +39,7 @@
       <!--<div class="items-group" unordered-list="todos"></div>-->
       <!--here can be used directive <todo-list>-->
       <ul class="todos" ng-init="currentStatus=2">
-
-        <li ng-repeat="item in todos | statusFiltered : currentStatus track by $index  " class="todo-item {{item.done ? 'done' : 'new'}}" id={{$index}} ng-dblclick="showEdit = !showEdit" >
+        <li ng-repeat="item in filtered = ( todos | statusFiltered : currentStatus) track by $index" class="todo-item {{item.done ? 'done' : 'new'}}" id={{$index}} ng-dblclick="showEdit = !showEdit" >
           <div class="edit-group" ng-show="showEdit" >
             <form>
               <input type="text" ng-model="item.name" class="item-edit" ng-keyup="$event.keyCode == 13 && (showEdit = false)" />
@@ -61,7 +60,7 @@
 
       <!--</todo-list>-->
       <div class="interface-footer">
-        <span class="pull-left">{{todos.length}} items total, {{$filter('statusFiltered')(todos, { currentStatus: 0 }).length}} items left</span>
+        <span class="pull-left">{{todos.length}} items total, {{filtered.length}} items showing</span>
         <a href="#/" class="pull-right" ng-click="deleteCompleted(todos)">Clear completed</a>
         <div class="filters">
           <a href="#/" ng-click="currentStatus=2">All</a>
