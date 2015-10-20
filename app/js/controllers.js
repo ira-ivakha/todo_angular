@@ -18,7 +18,7 @@ var app = angular.module('todoControllers', ['ngRoute'])
   });
 
 
-app.controller('ToDoCtrl', function($scope) {
+app.controller('ToDoCtrl', function($scope, dataService) {
   var date = new Date();
   $scope.today = date;
   $scope.checked = 'is_checked';
@@ -29,8 +29,8 @@ app.controller('ToDoCtrl', function($scope) {
     {'name': '3rd new', 'done': false}
   ];
   */
-  $scope.todos = [];
-  $scope.todos = loadTodos();
+  $scope.todos = dataService.todos;
+  //$scope.todos = loadTodos();
   console.log($scope.todos);
   console.log($scope.todos.length);
 

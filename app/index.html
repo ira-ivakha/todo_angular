@@ -89,14 +89,13 @@
   <div class="interface-group" data-ng-cloak>
 
     <select class="form-control" ng-model="dateModel" value="false">
-      <option ng-repeat="item in todos | groupBy done">{{item.done}}</option>
+      <option ng-repeat="item in todos | orderBy done">{{item.done}}</option>
     </select>
 
 
     <ol class="todos">
 
       <li ng-repeat="item in todos | filter: {done: dateModel}"   >
-        {{item.done}}
         {{item.name}}
         {{item.date | date}}
 
