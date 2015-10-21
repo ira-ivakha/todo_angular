@@ -30,7 +30,7 @@
 <script type="text/ng-template" id="list.html">
   <div class="header-group">
     <span class="btn-wrapper">
-      <a href="#/view" class="btn btn-default pull-right page-link">Show what should be done</a>
+      <a href="#/view" class="btn btn-default pull-right page-link">Show what to do</a>
     </span>
   </div>
   <form ng-submit="submit()" ng-controller="addToDoCtrl">
@@ -64,9 +64,11 @@
 
       <!--</todo-list>-->
       <div class="interface-footer" ng-class="{'hidden': !todos.length}">
-        <ul class="items-count pull-left">
-          <li>{{filtered.length}} of {{todos.length}} items showing</li>
-        </ul>
+        <span class="items-count pull-left">
+          {{filtered.length}} of {{todos.length}}
+          <ng-pluralize count="todos.length" when="{ one: 'item ', other: 'items ' }"></ng-pluralize>
+          displayed
+        </span>
         <a href="#/" class="pull-right" ng-click="deleteCompleted(todos)">Clear completed</a>
         <div class="filters">
           <a href="#/" ng-click="currentStatus=2">All</a>
