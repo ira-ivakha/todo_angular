@@ -81,6 +81,7 @@ html{
 .input-group{
   width: 100%;
   border-bottom: 1px solid #dddddd;
+  position: relative;
 }
 input[type="text"]{
   overflow: hidden;
@@ -121,8 +122,11 @@ input[type='submit']:active{
   padding:10px;
   vertical-align: middle;
 }
+.input-group input.main-input[type="text"]{
+  padding-left: 46px;
+}
 .edit-group{
-  margin:-10px -10px 0 35px;
+  margin:0 0 0 35px;
 }
 .edit-group input[type="text"]{
   border-left:1px solid #dddddd;
@@ -177,57 +181,79 @@ input:focus, input:active{
 }
 .todos li{
   list-style: none;
-  height:46px;
+  min-height:46px;
   vertical-align: middle;
   border-bottom: 1px solid #cccccc;
-  padding: 10px;
+  padding: 0 10px;
+}
+.todo-item{
+  position: relative;
 }
 .todo-item input[type="checkbox"]{
   display:none;
 }
 .todo-item input[type="checkbox"]+label{
   font-weight: 300;
-
+  width:100%;
+  line-height: 28px;
+  vertical-align: middle;
+  margin: 0;
 }
 .todo-item input[type="checkbox"]+label:before{
   display:inline-block;
   text-align:center;
-  width:26px;
-  height:26px;
+  font-size: 28px;
+  width:1em;
+  height:1em;
   margin: 0 5px;
-  line-height: 26px;
+  line-height: 1em;
   border:1px solid #dddddd;
   border-radius: 100%;
   background: #ffffff;
   content: '';
   font-family: "FontAwesome";
-  font-size: 28px;
+
   vertical-align: middle;
 }
-.odd-item{
+.even-item{
   background: #f6f6f6;
 }
 .todo-item input[type="checkbox"]:checked+label:before{
   content: '\f107';
   color: #008000;
 }
-.todo-item input[type="checkbox"]:checked+label{
+.todo-item input[type="checkbox"]:checked+label span{
   text-decoration: line-through;
   color: #acacac;
+  vertical-align: middle;
 }
 .todo-item .delete-item{
   font-weight: 300;
+  position: absolute;
   color: transparent;
-  float: right;
+  right: 10px;
+  top:50%;
+  margin-top: -0.7em;
 }
 .todo-item:hover .delete-item{
   color: #cccccc;
 }
+
+.item-name{
+  text-overflow: ellipsis;
+  overflow:hidden;
+  white-space: nowrap;
+  width:70%;
+  display:inline-block;
+  vertical-align: middle;
+}
+
 .item-date{
-  padding: 0 2em;
+  padding: 0 1.25em 0 0;
   font-size: 0.9em;
   color: #bbbbbb;
   font-style:italic;
+  float:right;
 }
 .items-count{
   padding:0;
@@ -242,8 +268,12 @@ input:focus, input:active{
 }
 .check-all{
   font-size: 40px;
-
+  position: absolute;
+  left: 15px;
 }
 .grey-color, .grey-color:visited, .grey-color:active, .grey-color:hover{
-  color:#aaaaaa;
+  color:#dddddd;
+}
+.view-group{
+  padding:8px 0;
 }

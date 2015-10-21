@@ -21,7 +21,7 @@ var app = angular.module('todoControllers', ['ngRoute'])
 app.controller('ToDoCtrl', function($scope, $http) {
   var date = new Date();
   $scope.today = date;
-  $scope.isChecked=false;
+  $scope.isChecked=true;
   $scope.checked = 'is_checked';
   $scope.title = 'ToDoApp';
   /*$scope.todos = [
