@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" media="print" href="css/print.css" />
   <script src="js/libraries/angular.js"></script>
   <script src="js/libraries/angular-route.js"></script>
   <script src="js/libraries/jquery.min.js"></script>
@@ -22,14 +23,16 @@
   <div class="header-group">
     <h1 class="app-title">{{title}}</h1>
     <span class="current_date"  data-ng-cloak>{{today | date}}</span>
-    <span class="btn-wrapper">
-      <a href="#/view" class="btn btn-default pull-right page-link">Show what should be done</a>
-      <a href="#/" class="btn btn-default pull-left page-link">Back to main page</a>
-    </span>
-
   </div>
+
+
   <ng-view></ng-view>
 <script type="text/ng-template" id="list.html">
+  <div class="header-group">
+    <span class="btn-wrapper">
+      <a href="#/view" class="btn btn-default pull-right page-link">Show what should be done</a>
+    </span>
+  </div>
   <form ng-submit="submit()" ng-controller="addToDoCtrl">
     <div class="interface-group" data-ng-cloak>
       <div class="input-group">
@@ -84,19 +87,23 @@
   </form>
 </script>
 <script type="text/ng-template" id="ordered-list.html">
+  <div class="header-group">
+    <span class="btn-wrapper">
+      <a href="#/" class="btn btn-default pull-left page-link">Back to main page</a>
+      <input type="button" class="btn btn-default pull-right print" value="Print" onClick="window.print()" />
+    </span>
+  </div>
 
   <div class="interface-group" data-ng-cloak>
 
-    <select class="form-control" ng-model="dateModel" value="false">
-      <option ng-repeat="item in todos | orderBy done">{{item.done}}</option>
-    </select>
 
 
-    <ol class="todos">
+    <h2 class="header-for-prn">Tasks </h2>
+    <ol class="for-prn" >
 
-      <li ng-repeat="item in todos | filter: {done: dateModel}"   >
+      <li ng-repeat="item in todos | filter: {done: true}"   >
         {{item.name}}
-        {{item.date | date}}
+        <span class="grey-color"><i ng-show="item.date">(</i><i>{{item.date | date}}</i><i ng-show="item.date">)</i></span>
 
       </li>
     </ol>
@@ -107,7 +114,6 @@
   </div>
 
 </script>
-
 </body>
 
 </html>

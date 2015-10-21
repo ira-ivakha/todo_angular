@@ -1,0 +1,53 @@
+/* app css stylesheet */
+body, html{
+  background: #ffffff;
+  font-size: 18px;
+  font-family: 'Open Sans', sans-serif;
+  min-height: 100%;
+  line-height: 1.4em;
+  margin:0;
+  padding: 0;
+  position: relative;
+}
+html{
+  height: 100%;
+}
+.header-group{
+  display:block;
+  position: relative;
+  width: 100%;
+  padding:1em;
+  margin:0 auto ;
+}
+.app-title{
+  text-align: center;
+  font-size: 48px;
+  color: #000000;
+  font-weight: 600;
+  opacity: 1;
+  font-style: italic;
+  text-shadow: none;
+}
+.btn-wrapper{
+  overflow: hidden;
+}
+.page-link, .print{
+  display: none;
+}
+.interface-group{
+
+  background: #ffffff;
+  border: none;
+  border-radius:0;
+  box-shadow: none;
+  width: 100%;
+  padding: 3em ;
+  margin: 0 auto;
+}
+.current_date{
+  float:right;
+}
+.grey-color, .grey-color:visited, .grey-color:active, .grey-color:hover{
+  color:#666666;
+  font-size: 0.9em;
+}
