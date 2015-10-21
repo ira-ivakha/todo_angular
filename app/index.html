@@ -34,13 +34,14 @@
     <div class="interface-group" data-ng-cloak>
       <div class="input-group">
         <!--<input type="submit" id="submit" value="Submit" />-->
+        <a href="#/" ng-click="checkAll(todos, isChecked)" title="Check All" ng-class="isChecked ? 'grey-color' : 'green-color'" class="check-all"><i class="fa fa-angle-down"></i></a>
         <input type="text" placeholder="Type Here What Needs To Be Done" ng-model="text" name="text" />
         <!--<input type="checkbox" ng-click="" id="all" name="check-all" />-->
       </div>
       <!--<div class="items-group" unordered-list="todos"></div>-->
       <!--here can be used directive <todo-list>-->
       <ul class="todos" ng-init="currentStatus=2">
-        <li ng-repeat="item in filtered = ( todos | statusFiltered : currentStatus) track by $index" class="todo-item {{item.done ? 'done' : 'new'}}" id={{$index}} ng-dblclick="showEdit = !showEdit" >
+        <li ng-repeat="item in filtered = ( todos | statusFiltered : currentStatus) track by $index" class="todo-item {{item.done ? 'done' : 'new'}}" id={{$index}} ng-dblclick="showEdit = !showEdit" ng-class="'odd-item': $odd">
           <div class="edit-group" ng-show="showEdit" >
             <form>
               <input type="text" ng-model="item.name" autofocus class="item-edit" ng-blur="showEdit = false" ng-keyup="$event.keyCode == 13 && (showEdit = false)" />

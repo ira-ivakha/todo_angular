@@ -204,7 +204,7 @@ input:focus, input:active{
   font-size: 28px;
   vertical-align: middle;
 }
-.todo-item:nth-child(odd){
+.odd-item{
   background: #f6f6f6;
 }
 .todo-item input[type="checkbox"]:checked+label:before{
@@ -236,4 +236,14 @@ input:focus, input:active{
 }
 .items-count li{
   list-style-type: none;
+}
+.green-color, .green-color:visited, .green-color:active, .green-color:hover{
+  color:#008000;
+}
+.check-all{
+  font-size: 40px;
+
+}
+.grey-color, .grey-color:visited, .grey-color:active, .grey-color:hover{
+  color:#aaaaaa;
 }

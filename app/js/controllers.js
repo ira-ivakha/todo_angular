@@ -18,9 +18,10 @@ var app = angular.module('todoControllers', ['ngRoute'])
   });
 
 
-app.controller('ToDoCtrl', function($scope, dataService) {
+app.controller('ToDoCtrl', function($scope, $http) {
   var date = new Date();
   $scope.today = date;
+  $scope.isChecked=false;
   $scope.checked = 'is_checked';
   $scope.title = 'ToDoApp';
   /*$scope.todos = [
@@ -29,8 +30,9 @@ app.controller('ToDoCtrl', function($scope, dataService) {
     {'name': '3rd new', 'done': false}
   ];
   */
-  $scope.todos = dataService.todos;
-  //$scope.todos = loadTodos();
+ // $scope.todos = dataService.todos;
+  /*----loading array from localstorage---*/
+  $scope.todos = loadTodos();
   console.log($scope.todos);
   console.log($scope.todos.length);
 
@@ -63,6 +65,19 @@ app.controller('ToDoCtrl', function($scope, dataService) {
     }
     localStorage["todos"] = JSON.stringify(todos);
   };
+
+  $scope.checkAll = function(todos, isChecked) {
+    var i= 0;
+   $scope.isChecked = !(isChecked);
+    //console.log(isChecked);
+    while (i< todos.length){
+      todos[i].done = isChecked;
+      i++;
+    }
+    storeTodos($scope.todos);
+  };
+
+
   /*
   $scope.showItem = function(itemClass, $event){
     //$event.preventDefault();

@@ -1,7 +1,7 @@
 'use strict';
 
 /* Services */
-/* example of factory and service */
+/* example of factory and service
 app.factory('dataService', function(){
   return{
     todos: [
@@ -23,3 +23,4 @@ var dataServiceFn = function(){
 };
 
 app.service('dataService', dataServiceFn);
+*/
